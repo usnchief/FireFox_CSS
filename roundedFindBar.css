@@ -1,0 +1,130 @@
+/*This file is an edit of MrOtherGuy's floating_findbar_on_top.css https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/floating_findbar_on_top.css and 
+  GrosBourins FireFix Blue-Moon findbarfinal.css https://github.com/GrosBourrin/FIREFOX-BLUE-MOON/blob/master/findbarfinal.css */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Style the findbar */
+findbar{
+  justify-content: flex-end;
+  order: -1;
+  margin-bottom: -30px;
+  position: relative;
+  border-top: none !important;
+  padding: 0 !important;
+  transition: transform 82ms linear, opacity 82ms linear 32ms !important;
+  background: none !important;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.findbar-container > .findbar-find-fast{
+  padding: var(--toolbarbutton-inner-padding) 1px;
+  margin: 0 !important;
+}
+.findbar-container > checkbox{
+  display: none;
+  -moz-user-focus: none;
+  }
+
+findbar[hidden]{ transform: translateY(-30px);}
+
+findbar>.findbar-container,
+findbar>.close-icon {
+	border: 1px solid #1c1b22 !important;
+	border-width: 0 0 1px 0px !important;
+	background-color: #1c1b22 !important;
+        background-image: linear-gradient(#1e1d2d, #1c1b22),var(--lwt-header-image,none);
+	pointer-events: auto;
+}
+
+findbar>.findbar-container {
+  display: flex;
+	flex-direction: row-reverse;
+	border-bottom-right-radius: 4px;
+	border-right-width: 1px;
+	height: initial !important;	
+	overflow-inline: visible !important;
+	margin-inline-start: 8px;
+  border-radius: 10px 0 0 10px;
+}
+
+.findbar-find-status{
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+ 
+.findbar-closebutton{
+  margin: 0 !important;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 1em !important;
+  margin-right: 5px;
+  width: initial !important;
+  order: -1;
+}
+.findbar-closebutton > image{ 
+  padding: 3px;
+ }
+.findbar-closebutton:hover > image{
+  background: var(--toolbarbutton-hover-background) !important;
+  border-radius: 4px
+}
+findbar > .findbar-container > hbox{
+   margin:  5% 15px;
+   padding: 0;
+}
+ 
+findbar::after{
+  content:"";
+  display: flex;
+  flex-grow: 100;
+} 
+@media (-moz-bool-pref: "userchrome.floating-findbar-on-right.enabled"){
+  findbar{
+    flex-direction: row-reverse;
+  }
+  findbar > .findbar-container{
+    display: flex;
+	  flex-direction: row-reverse;
+	  border-bottom-right-radius: 4px;
+	  border-right-width: 1px;
+	  height: initial !important;	
+	  overflow-inline: visible !important;
+	  margin-inline-start: 8px;
+    border-radius: 10px 0 0 10px;
+  }
+  /*
+  Move findbar so it isn't over the scrollbar
+  Delete if you want findbar to begin from right window edge
+  */
+  findbar{
+    margin-right: 16px;
+    /*border-right: 1px solid var(--chrome-content-separator-color);*/
+  }
+}
+@supports -moz-bool-pref("userchrome.floating-findbar-on-right.enabled"){
+  findbar{
+    flex-direction: row-reverse;
+  }
+  findbar > .findbar-container{
+    display: flex;
+	  flex-direction: row-reverse;
+	  border-bottom-right-radius: 4px;
+	  border-right-width: 1px;
+	  height: initial !important;	
+	  /*margin-inline: 0px !important;*/
+	  overflow-inline: visible !important;
+	  margin-inline-start: 8px;
+    border-radius: 10px 0 0 10px;
+  }
+  /*
+  Move findbar so it isn't over the scrollbar
+  Delete if you want findbar to begin from right window edge
+  */
+  findbar{
+    margin-right: 16px;
+    border-right: 1px solid var(--chrome-content-separator-color);
+  }
+}
